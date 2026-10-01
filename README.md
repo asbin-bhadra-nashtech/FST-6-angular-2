@@ -56,7 +56,7 @@ git clone <repository-url>
 Navigate to the project:
 
 ```bash
-cd task-manager-assignment-2-new
+cd FST-6-angular-2
 ```
 
 Install dependencies:
@@ -247,30 +247,6 @@ The application demonstrates:
 @for (task of taskService.getTasks(); track $index) {
   ...
 }
-```
-
-## Project Structure
-
-```text
-src/
-└── app/
-    ├── task-form/
-    │   ├── task-form.ts
-    │   ├── task-form.html
-    │   └── task-form.css
-    │
-    ├── task-list/
-    │   ├── task-list.ts
-    │   ├── task-list.html
-    │   └── task-list.css
-    │
-    ├── app.ts
-    ├── app.html
-    ├── app.css
-    ├── app.config.ts
-    ├── app.routes.ts
-    ├── task.ts
-    └── task.model.ts
 ```
 
 ## Screenshots
