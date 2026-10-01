@@ -1,0 +1,93 @@
+<section class="task-list">
+
+  <div class="list-header">
+    <div>
+      <h2>Tasks</h2>
+      <p>Manage your tasks and track your progress.</p>
+    </div>
+
+    <a routerLink="/add-task" class="add-task-button">
+      + Add Task
+    </a>
+  </div>
+
+  @if (taskService.getTasks().length === 0) {
+
+  <div class="empty-state">
+
+    <h3>No tasks yet</h3>
+
+    <p>
+      You don't have any tasks. Add your first task to get started.
+    </p>
+
+    <a routerLink="/add-task">
+      Add Your First Task
+    </a>
+
+  </div>
+
+  } @else {
+
+  <div class="tasks">
+
+    @for (task of taskService.getTasks(); track $index) {
+
+    <article
+      class="task-card"
+      [class.completed]="task.completed"
+      [class.priority-low]="task.priority === 'Low'"
+      [class.priority-medium]="task.priority === 'Medium'"
+      [class.priority-high]="task.priority === 'High'">
+
+      <div class="task-content">
+
+        <h3>
+          {{ task.title }}
+        </h3>
+
+        <div class="task-details">
+
+              <span class="priority-badge">
+                {{ task.priority }}
+              </span>
+
+          @if (task.completed) {
+
+          <span class="completed-label">
+                  ✓ Completed
+                </span>
+
+          } @else {
+
+          <span class="pending-label">
+                  Pending
+                </span>
+
+          }
+
+        </div>
+
+      </div>
+
+      <button
+        type="button"
+        (click)="taskService.toggleTask($index)">
+
+        @if (task.completed) {
+        Mark Uncompleted
+        } @else {
+        Mark Completed
+        }
+
+      </button>
+
+    </article>
+
+    }
+
+  </div>
+
+  }
+
+</section>

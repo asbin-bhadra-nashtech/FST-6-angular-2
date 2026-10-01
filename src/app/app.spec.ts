@@ -1,24 +1,19 @@
-import { TestBed } from '@angular/core/testing';
-import { App } from './app';
+import { Routes } from '@angular/router';
+import { TaskList } from './task-list/task-list';
+import { TaskForm } from './task-form/task-form';
 
-describe('App', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [App],
-    })
-      .compileComponents();
-  });
-
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(App);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
-
-  it('should render title', async () => {
-    const fixture = TestBed.createComponent(App);
-    await fixture.whenStable();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, task-manager-assignment-2-new');
-  });
-});
+export const routes: Routes = [
+  {
+    path: '',
+    redirectTo: 'tasks',
+    pathMatch: 'full',
+  },
+  {
+    path: 'tasks',
+    component: TaskList,
+  },
+  {
+    path: 'add-task',
+    component: TaskForm,
+  },
+];

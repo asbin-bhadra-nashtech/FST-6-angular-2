@@ -1,0 +1,122 @@
+<section class="task-form">
+
+  <div class="form-header">
+    <h2>Add New Task</h2>
+    <p>Create a task and set its priority and status.</p>
+  </div>
+
+  <form
+    #taskForm="ngForm"
+    (ngSubmit)="addTask()"
+    novalidate>
+
+    <!-- Task Title -->
+
+    <div class="form-group">
+
+      <label for="title">
+        Task Title
+      </label>
+
+      <input
+        id="title"
+        type="text"
+        name="title"
+        [(ngModel)]="title"
+        #titleField="ngModel"
+        required
+        minlength="3"
+        placeholder="Enter task title">
+
+      @if (titleField.invalid && titleField.touched) {
+
+      @if (titleField.errors?.['required']) {
+      <p class="error">
+        Task title is required.
+      </p>
+      }
+
+      @if (titleField.errors?.['minlength']) {
+      <p class="error">
+        Task title must contain at least 3 characters.
+      </p>
+      }
+
+      }
+
+    </div>
+
+
+    <!-- Priority -->
+
+    <div class="form-group">
+
+      <label for="priority">
+        Priority
+      </label>
+
+      <select
+        id="priority"
+        name="priority"
+        [(ngModel)]="priority">
+
+        <option value="Low">
+          Low
+        </option>
+
+        <option value="Medium">
+          Medium
+        </option>
+
+        <option value="High">
+          High
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <!-- Completed -->
+
+    <div class="form-group checkbox-group">
+
+      <label>
+
+        <input
+          type="checkbox"
+          name="completed"
+          [(ngModel)]="completed">
+
+        Mark as completed
+
+      </label>
+
+    </div>
+
+
+    <!-- Buttons -->
+
+    <div class="form-actions">
+
+      <button
+        type="submit"
+        [disabled]="taskForm.invalid">
+
+        Add Task
+
+      </button>
+
+      <button
+        type="button"
+        (click)="clearForm()">
+
+        Clear Form
+
+      </button>
+
+    </div>
+
+  </form>
+
+</section>
